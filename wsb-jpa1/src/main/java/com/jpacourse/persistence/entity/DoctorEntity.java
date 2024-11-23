@@ -1,34 +1,24 @@
 package com.jpacourse.persistence.entity;
 
+import com.jpacourse.persistence.embedded.UserEmbedded;
 import com.jpacourse.persistence.enums.Specialization;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "DOCTOR")
 public class DoctorEntity {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+	@GeneratedValue(generator = "UserIdGenerator")
+	@SequenceGenerator(
+	name = "UserIdGenerator",
+	sequenceName = "USER_ID_SEQ_LIBRARY",
+	allocationSize = 1
+    )
 	private Long id;
 
-	@Column(nullable = false)
-	private String firstName;
-
-	@Column(nullable = false)
-	private String lastName;
-
-	@Column(nullable = false)
-	private String telephoneNumber;
-
-	private String email;
+	@Embedded
+	private UserEmbedded userEmbedded;
 
 	@Column(nullable = false)
 	private String doctorNumber;
@@ -37,44 +27,47 @@ public class DoctorEntity {
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
+	@ManyToOne
+	private AddressEntity address;
+
+	public String getFirstName() {
+		return userEmbedded.getFirstName();
+	}
+
+	public void setFirstName(String firstName) {
+		userEmbedded.setFirstName(firstName);
+	}
+
+	public String getLastName() {
+		return userEmbedded.getLastName();
+	}
+
+	public void setLastName(String lastName) {
+		userEmbedded.setLastName(lastName);
+	}
+
+	public String getTelephoneNumber() {
+		return userEmbedded.getTelephoneNumber();
+	}
+
+	public void setTelephoneNumber(String telephoneNumber) {
+		userEmbedded.setTelephoneNumber(telephoneNumber);
+	}
+
+	public String getEmail() {
+		return userEmbedded.getEmail();
+	}
+
+	public void setEmail(String email) {
+		userEmbedded.setEmail(email);
+	}
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getTelephoneNumber() {
-		return telephoneNumber;
-	}
-
-	public void setTelephoneNumber(String telephoneNumber) {
-		this.telephoneNumber = telephoneNumber;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getDoctorNumber() {

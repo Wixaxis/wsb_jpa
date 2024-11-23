@@ -1,32 +1,29 @@
 package com.jpacourse.persistence.entity;
 
+import com.jpacourse.persistence.embedded.UserEmbedded;
+
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "PATIENT")
 public class PatientEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+	@GeneratedValue(generator = "UserIdGenerator")
+	@SequenceGenerator(
+	name = "UserIdGenerator",
+	sequenceName = "USER_ID_SEQ_LIBRARY",
+	allocationSize = 1
+    )
 	private Long id;
 
-	@Column(nullable = false)
-	private String firstName;
+	@Embedded
+	private UserEmbedded userEmbedded;
 
-	@Column(nullable = false)
-	private String lastName;
-
-	@Column(nullable = false)
-	private String telephoneNumber;
-
-	private String email;
+	@ManyToOne
+	private AddressEntity address;
 
 	@Column(nullable = false)
 	private String patientNumber;
@@ -43,35 +40,35 @@ public class PatientEntity {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return userEmbedded.getFirstName();
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		userEmbedded.setFirstName(firstName);
 	}
 
 	public String getLastName() {
-		return lastName;
+		return userEmbedded.getLastName();
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.userEmbedded.setLastName(lastName);
 	}
 
 	public String getTelephoneNumber() {
-		return telephoneNumber;
+		return userEmbedded.getTelephoneNumber();
 	}
 
 	public void setTelephoneNumber(String telephoneNumber) {
-		this.telephoneNumber = telephoneNumber;
+		this.userEmbedded.setTelephoneNumber(telephoneNumber);
 	}
 
 	public String getEmail() {
-		return email;
+		return userEmbedded.getEmail();
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.userEmbedded.setEmail(email);
 	}
 
 	public String getPatientNumber() {

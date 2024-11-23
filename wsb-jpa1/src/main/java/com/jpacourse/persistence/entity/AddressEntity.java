@@ -1,14 +1,15 @@
 package com.jpacourse.persistence.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.jpacourse.persistence.embedded.UserEmbedded;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "ADDRESS")
 public class AddressEntity {
+	// Many to many -> Doctor and Patient <-> Address
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +22,12 @@ public class AddressEntity {
 	private String addressLine2;
 
 	private String postalCode;
+
+	@OneToMany(mappedBy = "address")
+	private Collection<DoctorEntity> users;
+
+	@OneToMany(mappedBy = "address")
+	private Collection<PatientEntity> patients;
 
 	public Long getId() {
 		return id;
