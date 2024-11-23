@@ -21,7 +21,7 @@ public class DoctorEntity {
 	@Embedded
 	private UserEmbedded userEmbedded;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String doctorNumber;
 
 	@Column(nullable = false)

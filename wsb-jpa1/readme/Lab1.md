@@ -27,3 +27,9 @@ SHOW COLUMNS FROM PATIENT ;
 show columns from visit ;
 show columns from medical_treatment;
 show columns from visit_medical_treatment ;
+
+SELECT * FROM ADDRESS 
+   LEFT join PATIENT on ADDRESS.ID = PATIENT.ADDRESS_ID
+   LEFT join DOCTOR on ADDRESS.ID = DOCTOR.ADDRESS_ID
+   LEFT join VISIT on DOCTOR.ID = VISIT.DOCTOR_ID
+   LEFT join MEDICAL_TREATMENT on VISIT. = MEDICAL_TREATMENT.VISIT_ID;
