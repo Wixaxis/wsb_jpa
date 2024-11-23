@@ -24,12 +24,12 @@ public class AddressEntity {
 	private String postalCode;
 
 
-//	Relacja dwukierunkowa
-	@OneToMany(mappedBy = "address")
+	//	Relacja dwukierunkowa
+	@OneToMany(mappedBy = "address",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<DoctorEntity> users;
 
 	//	Relacja dwukierunkowa
-	@OneToMany(mappedBy = "address")
+	@OneToMany(mappedBy = "address", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Collection<PatientEntity> patients;
 
 	public Long getId() {

@@ -3,6 +3,7 @@ package com.jpacourse.persistence.entity;
 import com.jpacourse.persistence.embedded.UserEmbedded;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 import javax.persistence.*;
 
@@ -22,14 +23,18 @@ public class PatientEntity {
 	@Embedded
 	private UserEmbedded userEmbedded;
 
-	@ManyToOne
-	private AddressEntity address;
-
 	@Column(nullable = false)
 	private String patientNumber;
 
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
+
+	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+	private AddressEntity address;
+
+	@OneToMany(mappedBy = "patient", orphanRemoval = true, fetch = FetchType.EAGER)
+	private Collection<VisitEntity> visits;
+
 
 	public Long getId() {
 		return id;

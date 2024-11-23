@@ -4,6 +4,7 @@ import com.jpacourse.persistence.embedded.UserEmbedded;
 import com.jpacourse.persistence.enums.Specialization;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "DOCTOR")
@@ -27,8 +28,13 @@ public class DoctorEntity {
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
-	@ManyToOne
+//	Relacja dwukierunkowa
+	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	private AddressEntity address;
+
+//	Relacja dwukierunkowa
+	@OneToMany(mappedBy = "doctor", orphanRemoval = true, fetch = FetchType.EAGER)
+	private Collection<VisitEntity> visits;
 
 	public String getFirstName() {
 		return userEmbedded.getFirstName();

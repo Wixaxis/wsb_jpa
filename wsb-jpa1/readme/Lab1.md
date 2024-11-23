@@ -16,3 +16,14 @@ Przy kazdej relacji napisz jako komentarz czy jest to relacja jednostronna od st
 ## Notatki 
 Chciałem zrobić 1  referencje w adresie dla pacjenta i lekarza, ale w ten sposób który chciałem nie dało się.
 ![img.png](img.png)
+
+
+## DO WYŚWIETLENIA RELACJI W H2 
+http://localhost:8091/h2
+
+SHOW COLUMNS FROM ADDRESS ;
+ShOW COLUMNS FROM DOCTOR;
+SHOW COLUMNS FROM PATIENT ;
+show columns from visit ;
+show columns from medical_treatment;
+show columns from visit_medical_treatment ;
