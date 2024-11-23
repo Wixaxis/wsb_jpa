@@ -3,6 +3,7 @@ package com.jpacourse.persistence.embedded;
 import javax.persistence.*;
 
 @Embeddable
+@Table(name = "USER")
 public class UserEmbedded {
     @Column(nullable = false)
 	private String firstName;

@@ -23,9 +23,12 @@ public class AddressEntity {
 
 	private String postalCode;
 
+
+//	Relacja dwukierunkowa
 	@OneToMany(mappedBy = "address")
 	private Collection<DoctorEntity> users;
 
+	//	Relacja dwukierunkowa
 	@OneToMany(mappedBy = "address")
 	private Collection<PatientEntity> patients;
 
