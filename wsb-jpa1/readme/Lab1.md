@@ -28,8 +28,47 @@ show columns from visit ;
 show columns from medical_treatment;
 show columns from visit_medical_treatment ;
 
-SELECT * FROM ADDRESS 
-   LEFT join PATIENT on ADDRESS.ID = PATIENT.ADDRESS_ID
-   LEFT join DOCTOR on ADDRESS.ID = DOCTOR.ADDRESS_ID
-   LEFT join VISIT on DOCTOR.ID = VISIT.DOCTOR_ID
-   LEFT join MEDICAL_TREATMENT on VISIT. = MEDICAL_TREATMENT.VISIT_ID;
+# ZAPYTANIA SQL DO DANYCH
+
+## Wszystkie dostępne dane o odbytych wizytach
+SELECT 
+    v.id AS visit_id,
+    v.description AS visit_description,
+    v.time AS visit_time,
+    p.id AS patient_id,
+    p.first_name AS patient_first_name,
+    p.last_name AS patient_last_name,
+    p.date_of_birth AS patient_date_of_birth,
+    d.id AS doctor_id,
+    d.first_name AS doctor_first_name,
+    d.last_name AS doctor_last_name,
+    d.specialization AS doctor_specialization,
+    mt.id AS treatment_id,
+    mt.description AS treatment_description,
+    mt.type AS treatment_type
+FROM 
+    VISIT v
+LEFT JOIN 
+    PATIENT p ON v.patient_id = p.id
+LEFT JOIN 
+    DOCTOR d ON v.doctor_id = d.id
+LEFT JOIN 
+    VISIT_MEDICAL_TREATMENT vmt ON v.id = vmt.VISIT_ID
+LEFT JOIN 
+    MEDICAL_TREATMENT mt ON vmt.MEDICAL_TREATMENT_ID = mt.id;
+
+## wizyty i leczenie
+SELECT
+    v.id AS visit_id,
+    v.description AS visit_description,
+    v.time AS visit_time,
+    mt.id AS treatment_id,
+    mt.description AS treatment_description,
+    mt.type AS treatment_type
+FROM
+    VISIT v
+JOIN
+    VISIT_MEDICAL_TREATMENT vmt ON v.id = vmt.VISIT_ID
+JOIN
+    MEDICAL_TREATMENT mt ON vmt.MEDICAL_TREATMENT_ID = mt.id;
+

@@ -25,11 +25,11 @@ public class AddressEntity {
 
 
 	//	Relacja dwukierunkowa
-	@OneToMany(mappedBy = "address",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "address",  fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private Collection<DoctorEntity> users;
 
 	//	Relacja dwukierunkowa
-	@OneToMany(mappedBy = "address", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "address", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private Collection<PatientEntity> patients;
 
 	public Long getId() {

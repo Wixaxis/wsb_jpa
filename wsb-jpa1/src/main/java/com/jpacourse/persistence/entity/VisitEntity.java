@@ -28,7 +28,7 @@ public class VisitEntity {
 
 
 //	Relacja jednokierunkowa - Visit Entity jest rodzicem / właścicielem
-	@ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "VISIT_MEDICAL_TREATMENT",
 			joinColumns = @JoinColumn(name = "VISIT_ID"),

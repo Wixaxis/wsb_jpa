@@ -33,7 +33,7 @@ public class DoctorEntity {
 	private AddressEntity address;
 
 //	Relacja dwukierunkowa
-	@OneToMany(mappedBy = "doctor", orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private Collection<VisitEntity> visits;
 
 	public String getFirstName() {
