@@ -31,6 +31,7 @@ show columns from visit_medical_treatment ;
 # ZAPYTANIA SQL DO DANYCH
 
 ## Wszystkie dostępne dane o odbytych wizytach
+<code>
 SELECT 
     v.id AS visit_id,
     v.description AS visit_description,
@@ -39,6 +40,7 @@ SELECT
     p.first_name AS patient_first_name,
     p.last_name AS patient_last_name,
     p.date_of_birth AS patient_date_of_birth,
+    p.has_soldier_privileges AS patient_has_soldier_privileges,
     d.id AS doctor_id,
     d.first_name AS doctor_first_name,
     d.last_name AS doctor_last_name,
@@ -56,8 +58,10 @@ LEFT JOIN
     VISIT_MEDICAL_TREATMENT vmt ON v.id = vmt.VISIT_ID
 LEFT JOIN 
     MEDICAL_TREATMENT mt ON vmt.MEDICAL_TREATMENT_ID = mt.id;
+</code>
 
 ## wizyty i leczenie
+<code>
 SELECT
     v.id AS visit_id,
     v.description AS visit_description,
@@ -68,7 +72,9 @@ SELECT
 FROM
     VISIT v
 JOIN
-    VISIT_MEDICAL_TREATMENT vmt ON v.id = vmt.VISIT_ID
+VISIT_MEDICAL_TREATMENT vmt ON v.id = vmt.VISIT_ID
 JOIN
     MEDICAL_TREATMENT mt ON vmt.MEDICAL_TREATMENT_ID = mt.id;
 
+</code>
+    
