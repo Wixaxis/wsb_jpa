@@ -32,7 +32,7 @@ public class PatientEntity {
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	private AddressEntity address;
 
-	@OneToMany(mappedBy = "patient",cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Collection<VisitEntity> visits;
 
 
