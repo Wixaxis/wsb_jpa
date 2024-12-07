@@ -1,6 +1,7 @@
 package com.jpacourse.persistence.entity;
 
 import com.jpacourse.persistence.embedded.UserEmbedded;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -35,6 +36,8 @@ public class PatientEntity {
 	@OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Collection<VisitEntity> visits;
 
+	@Column()
+    private Boolean hasPriorityPrivileges;
 
 	public Long getId() {
 		return id;
@@ -92,4 +95,35 @@ public class PatientEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public UserEmbedded getUserEmbedded() {
+		return userEmbedded;
+	}
+
+	public void setUserEmbedded(UserEmbedded userEmbedded) {
+		this.userEmbedded = userEmbedded;
+	}
+
+	public AddressEntity getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressEntity address) {
+		this.address = address;
+	}
+
+	public Collection<VisitEntity> getVisits() {
+		return visits;
+	}
+
+	public void setVisits(Collection<VisitEntity> visits) {
+		this.visits = visits;
+	}
+
+	public Boolean getHasPriorityPrivileges() {
+		return hasPriorityPrivileges;
+	}
+
+	public void setHasPriorityPrivileges(Boolean hasPriorityPrivileges) {
+		this.hasPriorityPrivileges = hasPriorityPrivileges;
+	}
 }
